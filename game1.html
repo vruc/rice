@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>你是我的小苹果</title>
+  <title>挑你的逗</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, width=device-width,target-densitydpi=device-dpi"/>    
   <script type="text/javascript">
@@ -12,12 +12,10 @@
         (isDesktop ? '#welcome,#GameTimeLayer,#GameLayerBG,#GameScoreLayer.SHADE{position: absolute;}' :
         '#welcome,#GameTimeLayer,#GameLayerBG,#GameScoreLayer.SHADE{position:fixed;}@media screen and (orientation:landscape) {#landscape {display: box; display: -webkit-box; display: -moz-box; display: -ms-flexbox;}}') +
         '</style>');
-
-        // alert(fontunit);
     </script>
     <style type="text/css">
     body {font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; margin: 0; padding: 0;}
-    .loading {background-image: url("data:image/gif;base64,R0lGODlhJQAlAJECAL3L2AYrTv///wAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFCgACACwAAAAAJQAlAAACi5SPqcvtDyGYIFpF690i8xUw3qJBwUlSadmcLqYmGQu6KDIeM13beGzYWWy3DlB4IYaMk+Dso2RWkFCfLPcRvFbZxFLUDTt21BW56TyjRep1e20+i+eYMR145W2eefj+6VFmgTQi+ECVY8iGxcg35phGo/iDFwlTyXWphwlm1imGRdcnuqhHeop6UAAAIfkEBQoAAgAsEAACAAQACwAAAgWMj6nLXAAh+QQFCgACACwVAAUACgALAAACFZQvgRi92dyJcVJlLobUdi8x4bIhBQAh+QQFCgACACwXABEADAADAAACBYyPqcsFACH5BAUKAAIALBUAFQAKAAsAAAITlGKZwWoMHYxqtmplxlNT7ixGAQAh+QQFCgACACwQABgABAALAAACBYyPqctcACH5BAUKAAIALAUAFQAKAAsAAAIVlC+BGL3Z3IlxUmUuhtR2LzHhsiEFACH5BAUKAAIALAEAEQAMAAMAAAIFjI+pywUAIfkEBQoAAgAsBQAFAAoACwAAAhOUYJnAagwdjGq2amXGU1PuLEYBACH5BAUKAAIALBAAAgAEAAsAAAIFhI+py1wAIfkEBQoAAgAsFQAFAAoACwAAAhWUL4AIvdnciXFSZS6G1HYvMeGyIQUAIfkEBQoAAgAsFwARAAwAAwAAAgWEj6nLBQAh+QQFCgACACwVABUACgALAAACE5RgmcBqDB2MarZqZcZTU+4sRgEAIfkEBQoAAgAsEAAYAAQACwAAAgWEj6nLXAAh+QQFCgACACwFABUACgALAAACFZQvgAi92dyJcVJlLobUdi8x4bIhBQAh+QQFCgACACwBABEADAADAAACBYSPqcsFADs=");
+    .loading {background-image: url(imgs/loading.gif);
       background-repeat: no-repeat;
       background-position: center center;
       background-size: auto 60%; 
@@ -31,14 +29,21 @@
   .BBOX  ,.BOX,.APP-STAGE,.INSET-STAGE,.STAGE,.PAGE-STAGE,.PAGE,.PAGE-BOX,.INSET-PAGE,.FOOTER{box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
 
   #welcome { background-color:rgba(0,0,0,.8); text-align: center; font-weight: bold;overflow: hidden;}
-  .welcome-bg {position:absolute;top:0;left:0;right:0;bottom:0; background: url(imgs/logo.png) no-repeat; background-size:100% 100%; opacity: .4;overflow: hidden;}
+  .welcome-bg {position:absolute;top:0;left:0;right:0;bottom:0; background: url(imgs/doudou.jpg) no-repeat; background-size:100% 100%; overflow: hidden;}
   #GameTimeLayer {top:1em; left: 0; width:100%; text-align: center; color:#f00; font-size: 4em; text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff;overflow: hidden;}
-  #GameLayerBG {top:0;left:0;right:0;bottom:0;overflow:hidden;background:#fff;}
+  #GameLayerBG {top:0;left:0;right:0;bottom:0;overflow:hidden;background: url(imgs/doudou.jpg) no-repeat; background-size:100% 100%;}
   .GameLayer {position:absolute;bottom:0;left:0;}
-  .block {position:absolute;border-top:1px solid #1D70B6; background-repeat: no-repeat; background-position: center;}
-  .t1,.t2,.t3,.t4,.t5 { background-size:auto 100%;background-image:url(imgs/rice.png);}
-  .tt1,.tt2,.tt3,.tt4,.tt5 { background-size:auto 86%;background-image:url(imgs/rice.png);}
-  .bl {border-left:1px solid #1D70B6;}
+  .block {position:absolute;border-top:1px ridge #1D70B6; background-repeat: no-repeat; background-position: center;}
+  .t1,.t2,.t3,.t4,.t5 { background-size:auto 86%;background-image:url(imgs/soya2.png);}
+  .tt1,.tt2,.tt3,.tt4,.tt5 { background-size:auto 86%;background-image:url(imgs/soya2s.png);}
+
+  .btt1 { background-size:auto 86%;background-image:url(imgs/bean2.png);}
+  .btt2 { background-size:auto 86%;background-image:url(imgs/rice2.png);}
+
+  .btt1f { background-size:auto 86%;background-image:url(imgs/bean2f.png);}
+  .btt2f { background-size:auto 86%;background-image:url(imgs/rice2f.png);}
+
+  .bl {border-left:1px ridge #1D70B6;}
   @-ms-keyframes flash {
     0% { opacity: 1; }
     50% { opacity: 0; }
@@ -84,11 +89,35 @@
   
   <script type="text/javascript">
 
+    var AudioManager = function (src) {
+      var audio = document.createElement("audio");
+      if (audio != null && audio.canPlayType && audio.canPlayType("audio/mpeg")) {
+          audio.src = src;
+      }
+      return {
+          play: function () {
+              audio.play();
+          },
+          pause: function () {
+              audio.pause();
+          },
+          reset: function () {
+              audio.pause();
+              audio.currentTime = 0;
+          }
+        };
+      };
+
+    //var audio = new AudioManager("/Media/VLWV2.ogg");
+    var end = new AudioManager("sounds/end.mp3");
+    var err = new AudioManager("sounds/err.mp3");
+    var tap = new AudioManager("sounds/tap.mp3");
+
       window.shareData = {
-          "imgUrl": "", // img url
-          "timeLineLink": "", // url
-          "tTitle": "你是我的小呀小苹果！",
-          "tContent": "你是我的小呀小苹果,怎么爱你都不嫌多！"
+          "imgUrl": "http://42.159.197.17/qr/imgs/soya2.png", // img url
+          "timeLineLink": "http://42.159.197.17/qr/game1.html", // url
+          "tTitle": "挑你的逗",
+          "tContent": "挑你的逗,怎么爱你都不嫌多！"
       };
 
       if (isDesktop)
@@ -104,7 +133,6 @@
           transform = typeof (body.style.webkitTransform) != 'undefined' ? 'webkitTransform' : (typeof (body.style.msTransform) != 'undefined' ? 'msTransform' : 'transform');
           transitionDuration = transform.replace(/ransform/g, 'ransitionDuration');
 
-          alert([transform, transitionDuration].join(' - - '));
           console.log([transform, transitionDuration].join(' - - '));
 
           GameTimeLayer = document.getElementById('GameTimeLayer');
@@ -117,7 +145,7 @@
               GameLayerBG.ontouchstart = gameTapEvent;
           } else {
               GameLayerBG.onmousedown = gameTapEvent;
-              document.getElementById('landscape-text').innerHTML = '点我开始玩耍';
+              document.getElementById('landscape-text').innerHTML = '点我开始挑逗';
               document.getElementById('landscape').onclick = winOpen;
           }
           gameInit();
@@ -129,7 +157,7 @@
       if(rtnMsg == 'false'){
         var btn = document.getElementById('ready-btn');
         btn.className = 'btn';
-        btn.innerHTML = '您今天已经吃太多苹果啦，请明天继续！'      
+        btn.innerHTML = '您今天已经挑太多豆啦，请明天继续！'      
       }else{
         var btn = document.getElementById('ready-btn');
         btn.className = 'btn';
@@ -225,6 +253,7 @@
               gameOver();
               GameLayerBG.className += ' flash';
               // createjs.Sound.play("end");
+              // end.play();
           } else {
               GameTimeLayer.innerHTML = creatTimeText(_gameTimeNum);
           }
@@ -234,6 +263,7 @@
           text = '&nbsp;&nbsp;' + text.substr(0, 2) + "'" + text.substr(2) + "''"
           return text;
       }
+      var test = false;
       var _ttreg = / t{1,2}(\d+)/, _clearttClsReg = / t{1,2}\d+| bad/;
       function refreshGameLayer(box, loop, offset) {
           var i = Math.floor(Math.random() * 1000) % 4 + (loop ? 0 : 4);
@@ -244,13 +274,21 @@
               rstyle.bottom = Math.floor(j / 4) * blockSize + 'px';
               rstyle.width = blockSize + 'px';
               rstyle.height = blockSize + 'px';
-              r.className = r.className.replace(_clearttClsReg, '');
+              r.className = r.className.replace(_clearttClsReg, '').replace(/btt[1,2]/g, "");
               if (i == j) {
                   _gameBBList.push({ cell: i % 4, id: r.id });
                   r.className += ' t' + (Math.floor(Math.random() * 1000) % 5 + 1);
                   r.notEmpty = true;
                   i = (Math.floor(j / 4) + 1) * 4 + Math.floor(Math.random() * 1000) % 4;
               } else {
+                  if( j>3 ) { test = true; }
+                  if( test ){
+                    if(Math.random()>0.5)
+                      r.className += ' btt1';
+                    else{
+                      r.className += ' btt2';
+                    }
+                  }
                   r.notEmpty = false;
               }
           }
@@ -297,15 +335,18 @@
                   gameStart();
               }
               // createjs.Sound.play("tap");
+              // tap.reset();
+              // tap.play();
               tar = document.getElementById(p.id);
-              tar.className = tar.className.replace(_ttreg, ' tt$1');
+              tar.className = tar.className.replace(_ttreg, ' tt$1').replace(/btt[1,2]/g, "");
               _gameBBListIndex++;
               _gameScore++;
               gameLayerMoveNextRow();
           } else if (_gameStart && !tar.notEmpty) {
               // createjs.Sound.play("err");
+              // err.play();
               gameOver();
-              tar.className += ' bad';
+              tar.className = tar.className.replace(/(btt[1,2])/g, "$1f") + ' bad';
           }
           return false;
       }
@@ -349,7 +390,7 @@
           }
           document.getElementById('GameScoreLayer-bast').innerHTML = '最佳&nbsp;&nbsp;' + bast;
           l.style.display = 'block';
-          window.shareData.tTitle = '我吃掉了' + _gameScore + '个小苹果，不服来挑战！！！'
+          window.shareData.tTitle = '我挑出了' + _gameScore + '个小黄豆，不服来挑战！！！'
       }
       function hideGameScoreLayer() {
           var l = document.getElementById('GameScoreLayer');
@@ -364,19 +405,18 @@
           hideGameScoreLayer();
           showWelcomeLayer();
       }
-    var mebtnopenurl = 'http://www.duoduozhifu.com/game/';
-    var gototop='http://ddqianphp.aliapp.com/game/gzh/readme.html';
+    var mebtnopenurl = 'http://www.bing.com';
+    var gototop='http://www.baidu.com';
       function shareText(score) {
-        score = 201;
           if (score <= 49)
-              return '呵呵！我吃掉了'+score+'个小苹果！<br/>亲，还得加油哦!';
+              return '呵呵！我挑出了'+score+'个小黄豆！<br/>亲，还得加油哦!';
           if (score <= 99)
-              return '酷！我吃掉了'+score+'个小苹果！<br/>亲，不错哦！';
+              return '酷！我挑出了'+score+'个小黄豆！<br/>亲，不错哦！';
           if (score <= 149)
-              return '帅呆了！我吃掉了'+score+'个小苹果！<br/>亲，爱死你了！';
+              return '帅呆了！我挑出了'+score+'个小黄豆！<br/>亲，爱死你了！';
           if (score <= 199)
-              return '太牛了！我吃掉了'+score+'个小苹果！<br/>亲，奥巴马和金正恩都惊呆了！';
-          return '膜拜ing！我吃掉了'+score+'个小苹果！<br/>亲，我想我不是地球人！再也没人能超越我了！';
+              return '太牛了！我挑出了'+score+'个小黄豆！<br/>亲，奥巴马和金正恩都惊呆了！';
+          return '膜拜ing！我挑出了'+score+'个小黄豆！<br/>亲，我想我不是地球人！再也没人能超越我了！';
       }
 
       function toStr(obj) {
@@ -452,13 +492,12 @@
         <div class="btn BOX-S" onclick="share()">分享到朋友圈</div>&nbsp;
       </div>
       <br/>
-      <div id="GameScoreLayer-share" class="BOX">
+      <!-- <div id="GameScoreLayer-share" class="BOX">
         <div id="mebtn" class="btn BOX-S" onclick="window.open(mebtnopenurl)">&nbsp;更多游戏！</div>
-        
-      </div>
+      </div> -->
       <br>
       <div id="GameScoreLayer-share" class="BOX">
-      <div id="mebtn" class="btn BOX-S" ><a href="http://ddqianphp.aliapp.com/game/gzh/readme.html" style="color:#fff;text-decoration:none;">关注多多智富！</a></div>
+      <!-- <div id="mebtn" class="btn BOX-S" ><a href="http://ddqianphp.aliapp.com/game/gzh/readme.html" style="color:#fff;text-decoration:none;">关注多多智富！</a></div> -->
       </div>
     </div>
   </div>
@@ -467,17 +506,17 @@
     <div class="welcome-bg FILL"></div>
     <div class="FILL BOX-M" style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:5;">
       <div style="margin:0 8% 0 9%;">
-        <div style="font-size:2.6em; color:#FEF002;">你爱小苹果吗？</div><br/>
-        <div style="font-size:2.2em; color:#fff; line-height:1.5em;">从最下面的小苹果开始，<br/>20秒内看你能吃掉多少个小苹果！<br/></div><br/><br/>
+        <div style="font-size:2.6em; color:#000;">你爱挑逗吗？</div><br/>
+        <div style="font-size:2.2em; color:#000; line-height:1.5em;">从最下面的小黄豆开始，<br/>20秒内看你能挑出多少个小黄豆！<br/></div><br/><br/>
         <div id="ready-btn" class="btn loading" style="display:inline-block; margin:0 auto; width:8em; height:1.7em; line-height:1.7em; font-size:2.2em; color:#fff;"></div>
       <br/><br/>
       
-      <div style="font-size:1.2em; color:#fff; line-height:1.5em;">
+      <!-- <div style="font-size:1.2em; color:#000; line-height:1.5em;">
         多多智富正为您打造一个收获
         <br/>智慧、快乐与财富的平台。
         <br/>点击下方按钮关注公众号<br/>
-      </div>
-      <div style="display:inline-block; margin:0 auto; width:8em; height:1em; line-height:1.7em; font-size:1.7em; color:#fff;" ><a href="http://ddqianphp.aliapp.com/game/gzh/readme.html">点击关注</a></div>
+      </div> -->
+      <!-- <div style="display:inline-block; margin:0 auto; width:8em; height:1em; line-height:1.7em; font-size:1.7em; color:#fff;" ><a href="http://ddqianphp.aliapp.com/game/gzh/readme.html">点击关注</a></div> -->
     
       </div>
     </div>
