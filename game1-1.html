@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>你是我的小苹果</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, width=device-width,target-densitydpi=device-dpi"/>    
+  <script type="text/javascript">
+    var isDesktop = navigator['userAgent'].match(/(ipad|iphone|ipod|android|windows phone)/i) ? false : true;
+    var fontunit = isDesktop ? 20 : ((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) / 320) * 10;
+        document.write('<style type="text/css">' +
+        'html,body {font-size:' + (fontunit < 30 ? fontunit : '30') + 'px;}' +
+        (isDesktop ? '#welcome,#GameTimeLayer,#GameLayerBG,#GameScoreLayer.SHADE{position: absolute;}' :
+        '#welcome,#GameTimeLayer,#GameLayerBG,#GameScoreLayer.SHADE{position:fixed;}@media screen and (orientation:landscape) {#landscape {display: box; display: -webkit-box; display: -moz-box; display: -ms-flexbox;}}') +
+        '</style>');
+        // alert(fontunit);
+  </script>
+  <style type="text/css">
+      body {font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; margin: 0; padding: 0;}
+      .loading {background-image: url("data:image/gif;base64,R0lGODlhJQAlAJECAL3L2AYrTv///wAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFCgACACwAAAAAJQAlAAACi5SPqcvtDyGYIFpF690i8xUw3qJBwUlSadmcLqYmGQu6KDIeM13beGzYWWy3DlB4IYaMk+Dso2RWkFCfLPcRvFbZxFLUDTt21BW56TyjRep1e20+i+eYMR145W2eefj+6VFmgTQi+ECVY8iGxcg35phGo/iDFwlTyXWphwlm1imGRdcnuqhHeop6UAAAIfkEBQoAAgAsEAACAAQACwAAAgWMj6nLXAAh+QQFCgACACwVAAUACgALAAACFZQvgRi92dyJcVJlLobUdi8x4bIhBQAh+QQFCgACACwXABEADAADAAACBYyPqcsFACH5BAUKAAIALBUAFQAKAAsAAAITlGKZwWoMHYxqtmplxlNT7ixGAQAh+QQFCgACACwQABgABAALAAACBYyPqctcACH5BAUKAAIALAUAFQAKAAsAAAIVlC+BGL3Z3IlxUmUuhtR2LzHhsiEFACH5BAUKAAIALAEAEQAMAAMAAAIFjI+pywUAIfkEBQoAAgAsBQAFAAoACwAAAhOUYJnAagwdjGq2amXGU1PuLEYBACH5BAUKAAIALBAAAgAEAAsAAAIFhI+py1wAIfkEBQoAAgAsFQAFAAoACwAAAhWUL4AIvdnciXFSZS6G1HYvMeGyIQUAIfkEBQoAAgAsFwARAAwAAwAAAgWEj6nLBQAh+QQFCgACACwVABUACgALAAACE5RgmcBqDB2MarZqZcZTU+4sRgEAIfkEBQoAAgAsEAAYAAQACwAAAgWEj6nLXAAh+QQFCgACACwFABUACgALAAACFZQvgAi92dyJcVJlLobUdi8x4bIhBQAh+QQFCgACACwBABEADAADAAACBYSPqcsFADs=");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: auto 60%; 
+      }
+
+      .SHADE {top: 0; left:0; width:100%; height: 100%; bottom:0; z-index: 11;}
+      .BOX-V {box-orient: vertical;-webkit-box-orient: vertical; -moz-box-orient: vertical;-ms-flex-direction:column;}
+      .BOX-D {box-align: end; box-pack: center -webkit-box-align: end; -webkit-box-pack: center; -ms-flex-align:end; -ms-flex-pack:center;}
+      .BOX-M {box-align: center;box-pack: center; -webkit-box-align: center; -webkit-box-pack: center; -ms-flex-align:center; -ms-flex-pack:center;}
+      .BOX-S {display:block; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1;-ms-flex:1;}
+      .BOX   ,.BOX-V,.BOX-D,.BOX-M, .FOOTER{display: box; display: -webkit-box; display: -moz-box; display: -ms-flexbox;}
+      .BBOX  ,.BOX,.APP-STAGE,.INSET-STAGE,.STAGE,.PAGE-STAGE,.PAGE,.PAGE-BOX,.INSET-PAGE,.FOOTER{box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+
+      #welcome { background-color:rgba(0,0,0,.8); text-align: center; font-weight: bold;overflow: hidden;}
+      .welcome-bg {position:absolute;top:0;left:0;right:0;bottom:0; background: url(imgs/logo.png) no-repeat; background-size:100% 100%; opacity: .4;overflow: hidden;}
+      #GameTimeLayer {top:1em; left: 0; width:100%; text-align: center; color:#f00; font-size: 4em; text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff;overflow: hidden;}
+      #GameLayerBG {top:0;left:0;right:0;bottom:0;overflow:hidden;background:#fff;}
+      .GameLayer {position:absolute;bottom:0;left:0;}
+      .block {position:absolute;border-top:1px solid #1D70B6; background-repeat: no-repeat; background-position: center;}
+      .t1,.t2,.t3,.t4,.t5 { background-size:auto 100%;background-image:url(imgs/rice.png);}
+      .bt1,.bt2,.bt3,.bt4,.bt5 { background-size:auto 100%;background-image:url(imgs/bean.png);}
+      .dt1,.dt2,.dt3,.dt4,.dt5 { background-size:auto 100%;background-image:url(imgs/soya.png);}
+      .tt1,.tt2,.tt3,.tt4,.tt5 { background-size:auto 86%;background-image:url(imgs/rice.png);}
+      .bl {border-left:1px solid #1D70B6;}
+      @-ms-keyframes flash {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @-webkit-keyframes flash {
+        0% { opacity: 1; } 
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      .flash {-webkit-animation: flash .2s 3;animation: flash .2s 3;}
+      .bad {background-color: #f00; -webkit-animation: flash .2s 3;animation: flash .2s 3;}
+      * {-webkit-tap-highlight-color: rgba(0,0,0,0);-ms-tap-highlight-color: rgba(0,0,0,0); tap-highlight-color: rgba(0,0,0,0); -ms-user-select: none;}
+
+      #GameScoreLayer {background-position:center .5em; background-size: auto 4em; padding-top:3em; font-size:2em; font-weight: bold; color:#fff; text-align: center;overflow: hidden;}
+      .bgc1 { background-color: #23378B;}
+      .bgc2 { background-color: #009FE3;}
+      .bgc3 { background-color: #E42313;}
+      .bgc4 { background-color: #FCBD1B;}
+      .bgc5 { background-color: #34002A;}
+
+      .share-icon {width:1.7em; background-repeat:no-repeat; background-size: auto 100%;}
+
+      #GameScoreLayer-btn .btn,#GameScoreLayer-share .btn {text-align: center;font-size:1.1em; background-color: rgba(0,0,0,.3); height:2em; line-height:2em;}
+
+      .btn:active {opacity: 0.2;}
+      #landscape {display: none;}
+
+      #gameBody {position: relative; width: 640px; margin: 0 auto; height: 100%;}
+      #share-wx {
+        background: rgba(0,0,0,0.8);
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: none;
+      }
+  </style>
+
+  <script src="scripts/avalon.mobile.js"></script>
+</head>
+<body ms-controller="game1" ms-css-height="bodyHeight">
+  <div id="GameTimeLayer">&nbsp;&nbsp;20'00''</div>
+
+  <div id="GameLayerBG" ms-css-height="bodyHeight">
+    <div id="GameLayer1" class="GameLayer" ms-html="contentHTML" ms-css-webkit-transform="translate3d(0px, {{aaa}}px, 0px)"
+      style="-webkit-transition: 150ms; transition: 150ms; display: block;"></div>
+
+  </div>
+
+  <div id="GameScoreLayer" class="BBOX SHADE bgc1" style="display:none;">
+    <div style="padding:0 5%;">
+      <div id="GameScoreLayer-text"></div>
+      <br/>
+      <div id="GameScoreLayer-score" style="margin-bottom:1em;">得分</div>
+      <div id="GameScoreLayer-bast">最佳</div>
+      <br/>
+      <div id="GameScoreLayer-btn" class="BOX">
+        <div class="btn BOX-S" onclick="replayBtn()">重来</div>&nbsp;
+        <div class="btn BOX-S" onclick="share()">分享到朋友圈</div>&nbsp;
+      </div>
+      <br/>
+      <div id="GameScoreLayer-share" class="BOX">
+        <div id="mebtn" class="btn BOX-S" onclick="window.open(mebtnopenurl)">&nbsp;更多游戏！</div>
+        
+      </div>
+      <br>
+      <div id="GameScoreLayer-share" class="BOX">
+      <div id="mebtn" class="btn BOX-S" ><a href="http://ddqianphp.aliapp.com/game/gzh/readme.html" style="color:#fff;text-decoration:none;">关注多多智富！</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="welcome" class="SHADE BOX-M" style="display:none;">
+    <div class="welcome-bg FILL"></div>
+    <div class="FILL BOX-M" style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:5;">
+      <div style="margin:0 8% 0 9%;">
+        <div style="font-size:2.6em; color:#FEF002;">你爱小苹果吗？</div><br/>
+        <div style="font-size:2.2em; color:#fff; line-height:1.5em;">从最下面的小苹果开始，<br/>20秒内看你能吃掉多少个小苹果！<br/></div><br/><br/>
+        <div id="ready-btn" class="btn loading" style="display:inline-block; margin:0 auto; width:8em; height:1.7em; line-height:1.7em; font-size:2.2em; color:#fff;"></div>
+      <br/><br/>
+      
+      <div style="font-size:1.2em; color:#fff; line-height:1.5em;">
+        多多智富正为您打造一个收获
+        <br/>智慧、快乐与财富的平台。
+        <br/>点击下方按钮关注公众号<br/>
+      </div>
+      <div style="display:inline-block; margin:0 auto; width:8em; height:1em; line-height:1.7em; font-size:1.7em; color:#fff;" ><a href="http://ddqianphp.aliapp.com/game/gzh/readme.html">点击关注</a></div>
+    
+      </div>
+    </div>
+  </div>
+
+  <div id="landscape" class="SHADE BOX-M" style="background:rgba(0,0,0,.9);">
+    <div class="welcome-bg FILL"></div>
+    <div id="landscape-text" style="color:#fff;font-size:3em;">请竖屏玩耍</div>
+  </div>
+
+  <div id="share-wx">
+    <p style="text-align: right; padding-left: 10px;"><img src="share.png" id="share-wx-img" style="max-width: 280px; padding-right: 25px;"></p>
+  </div>
+
+  <script>
+
+    var Util = {};
+    Util.format = function(tmp){
+        var args = Array.prototype.slice.call(arguments,1);
+        return tmp.replace(/\{(\d+)\}/g, function(a,b){ return args[b]; })
+    };
+
+    var model = avalon.define("game1", function(vm){
+      console.log(123);
+
+      var blockSize = document.body.offsetWidth / 4; 
+
+      vm.blockSize = blockSize;
+      vm.bodyHeight = window.innerHeight + 'px';
+
+      var stack = [
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3],
+        [0,1,2,0],
+        [1,0,0,0],
+        [0,2,0,1],
+        [1,2,3,0],
+        [0,1,2,3]
+      ];
+
+      vm.stack = stack;
+      vm.aaa = 0;
+      var dic = {
+        0:"",
+        1:"t1",
+        2:"bt1",
+        3:"dt1",
+      };
+      var contentHTML = "";
+      stack.forEach(function(item, i){
+        item.forEach(function(val, k){
+          contentHTML += Util.format('<div class="block {1} bl" style="left: {2}px; bottom: {3}px; width: {0}px; height: {0}px;"></div>', 
+            blockSize, dic[val], blockSize * k, blockSize * i);
+        });
+      });
+
+      vm.contentHTML = contentHTML;
+
+      // vm.pagerContent = '
+      // <div id="GameLayer1-0" num="0" class="block"        style="left: 0px; bottom: 0px; width: 80px; height: 80px;"></div>
+      // <div id="GameLayer1-1" num="1" class="block bl tt1" style="left: 80px; bottom: 0px; width: 80px; height: 80px;"></div>
+      // <div id="GameLayer1-2" num="2" class="block bl"     style="left: 160px; bottom: 0px; width: 80px; height: 80px;"></div>
+      // <div id="GameLayer1-3" num="3" class="block bl"     style="left: 240px; bottom: 0px; width: 80px; height: 80px;"></div>
+
+
+
+      // <div id="GameLayer1-4" num="4" class="block"        style="left: 0px; bottom: 80px; width: 80px; height: 80px;"></div>
+      // <div id="GameLayer1-5" num="5" class="block bl tt4" style="left: 80px; bottom: 80px; width: 80px; height: 80px;"></div>
+      // <div id="GameLayer1-6" num="6" class="block bl"     style="left: 160px; bottom: 80px; width: 80px; height: 80px;"></div>
+      // <div id="GameLayer1-7" num="7" class="block bl"     style="left: 240px; bottom: 80px; width: 80px; height: 80px;"></div>
+
+
+
+
+      // <div id="GameLayer1-8" num="8" class="block"            style="left: 0px; bottom: 160px; width: 80px; height: 80px;"></div>
+      // <div id="GameLayer1-9" num="9" class="block bl"         style="left: 80px; bottom: 160px; width: 80px; height: 80px;"></div>
+      // <div id="GameLayer1-10" num="10" class="block bl t2"    style="left: 160px; bottom: 160px; width: 80px; height: 80px;"></div>
+      // <div id="GameLayer1-11" num="11" class="block bl"       style="left: 240px; bottom: 160px; width: 80px; height: 80px;"></div>
+
+
+
+      // <div id="GameLayer1-12" num="12" class="block" style="left: 0px; bottom: 240px; width: 80px; height: 80px;"></div><div id="GameLayer1-13" num="13" class="block bl" style="left: 80px; bottom: 240px; width: 80px; height: 80px;"></div><div id="GameLayer1-14" num="14" class="block bl t4" style="left: 160px; bottom: 240px; width: 80px; height: 80px;"></div><div id="GameLayer1-15" num="15" class="block bl" style="left: 240px; bottom: 240px; width: 80px; height: 80px;"></div><div id="GameLayer1-16" num="16" class="block" style="left: 0px; bottom: 320px; width: 80px; height: 80px;"></div><div id="GameLayer1-17" num="17" class="block bl t3" style="left: 80px; bottom: 320px; width: 80px; height: 80px;"></div><div id="GameLayer1-18" num="18" class="block bl" style="left: 160px; bottom: 320px; width: 80px; height: 80px;"></div><div id="GameLayer1-19" num="19" class="block bl" style="left: 240px; bottom: 320px; width: 80px; height: 80px;"></div><div id="GameLayer1-20" num="20" class="block" style="left: 0px; bottom: 400px; width: 80px; height: 80px;"></div><div id="GameLayer1-21" num="21" class="block bl" style="left: 80px; bottom: 400px; width: 80px; height: 80px;"></div><div id="GameLayer1-22" num="22" class="block bl" style="left: 160px; bottom: 400px; width: 80px; height: 80px;"></div><div id="GameLayer1-23" num="23" class="block bl t2" style="left: 240px; bottom: 400px; width: 80px; height: 80px;"></div><div id="GameLayer1-24" num="24" class="block" style="left: 0px; bottom: 480px; width: 80px; height: 80px;"></div><div id="GameLayer1-25" num="25" class="block bl" style="left: 80px; bottom: 480px; width: 80px; height: 80px;"></div><div id="GameLayer1-26" num="26" class="block bl" style="left: 160px; bottom: 480px; width: 80px; height: 80px;"></div><div id="GameLayer1-27" num="27" class="block bl t1" style="left: 240px; bottom: 480px; width: 80px; height: 80px;"></div><div id="GameLayer1-28" num="28" class="block" style="left: 0px; bottom: 560px; width: 80px; height: 80px;"></div><div id="GameLayer1-29" num="29" class="block bl" style="left: 80px; bottom: 560px; width: 80px; height: 80px;"></div><div id="GameLayer1-30" num="30" class="block bl" style="left: 160px; bottom: 560px; width: 80px; height: 80px;"></div><div id="GameLayer1-31" num="31" class="block bl t3" style="left: 240px; bottom: 560px; width: 80px; height: 80px;"></div><div id="GameLayer1-32" num="32" class="block" style="left: 0px; bottom: 640px; width: 80px; height: 80px;"></div><div id="GameLayer1-33" num="33" class="block bl" style="left: 80px; bottom: 640px; width: 80px; height: 80px;"></div><div id="GameLayer1-34" num="34" class="block bl" style="left: 160px; bottom: 640px; width: 80px; height: 80px;"></div><div id="GameLayer1-35" num="35" class="block bl t5" style="left: 240px; bottom: 640px; width: 80px; height: 80px;"></div><div id="GameLayer1-36" num="36" class="block" style="left: 0px; bottom: 720px; width: 80px; height: 80px;"></div><div id="GameLayer1-37" num="37" class="block bl" style="left: 80px; bottom: 720px; width: 80px; height: 80px;"></div><div id="GameLayer1-38" num="38" class="block bl" style="left: 160px; bottom: 720px; width: 80px; height: 80px;"></div><div id="GameLayer1-39" num="39" class="block bl t1" style="left: 240px; bottom: 720px; width: 80px; height: 80px;"></div><div id="GameLayer1-0" num="0" class="block" style="left: 0px; bottom: 0px; width: 80px; height: 80px;"></div><div id="GameLayer1-1" num="1" class="block bl tt1" style="left: 80px; bottom: 0px; width: 80px; height: 80px;"></div><div id="GameLayer1-2" num="2" class="block bl" style="left: 160px; bottom: 0px; width: 80px; height: 80px;"></div><div id="GameLayer1-3" num="3" class="block bl" style="left: 240px; bottom: 0px; width: 80px; height: 80px;"></div><div id="GameLayer1-4" num="4" class="block" style="left: 0px; bottom: 80px; width: 80px; height: 80px;"></div><div id="GameLayer1-5" num="5" class="block bl tt4" style="left: 80px; bottom: 80px; width: 80px; height: 80px;"></div><div id="GameLayer1-6" num="6" class="block bl" style="left: 160px; bottom: 80px; width: 80px; height: 80px;"></div><div id="GameLayer1-7" num="7" class="block bl" style="left: 240px; bottom: 80px; width: 80px; height: 80px;"></div><div id="GameLayer1-8" num="8" class="block" style="left: 0px; bottom: 160px; width: 80px; height: 80px;"></div><div id="GameLayer1-9" num="9" class="block bl" style="left: 80px; bottom: 160px; width: 80px; height: 80px;"></div><div id="GameLayer1-10" num="10" class="block bl t2" style="left: 160px; bottom: 160px; width: 80px; height: 80px;"></div><div id="GameLayer1-11" num="11" class="block bl" style="left: 240px; bottom: 160px; width: 80px; height: 80px;"></div><div id="GameLayer1-12" num="12" class="block" style="left: 0px; bottom: 240px; width: 80px; height: 80px;"></div><div id="GameLayer1-13" num="13" class="block bl" style="left: 80px; bottom: 240px; width: 80px; height: 80px;"></div><div id="GameLayer1-14" num="14" class="block bl t4" style="left: 160px; bottom: 240px; width: 80px; height: 80px;"></div><div id="GameLayer1-15" num="15" class="block bl" style="left: 240px; bottom: 240px; width: 80px; height: 80px;"></div><div id="GameLayer1-16" num="16" class="block" style="left: 0px; bottom: 320px; width: 80px; height: 80px;"></div><div id="GameLayer1-17" num="17" class="block bl t3" style="left: 80px; bottom: 320px; width: 80px; height: 80px;"></div><div id="GameLayer1-18" num="18" class="block bl" style="left: 160px; bottom: 320px; width: 80px; height: 80px;"></div><div id="GameLayer1-19" num="19" class="block bl" style="left: 240px; bottom: 320px; width: 80px; height: 80px;"></div><div id="GameLayer1-20" num="20" class="block" style="left: 0px; bottom: 400px; width: 80px; height: 80px;"></div><div id="GameLayer1-21" num="21" class="block bl" style="left: 80px; bottom: 400px; width: 80px; height: 80px;"></div><div id="GameLayer1-22" num="22" class="block bl" style="left: 160px; bottom: 400px; width: 80px; height: 80px;"></div><div id="GameLayer1-23" num="23" class="block bl t2" style="left: 240px; bottom: 400px; width: 80px; height: 80px;"></div><div id="GameLayer1-24" num="24" class="block" style="left: 0px; bottom: 480px; width: 80px; height: 80px;"></div><div id="GameLayer1-25" num="25" class="block bl" style="left: 80px; bottom: 480px; width: 80px; height: 80px;"></div><div id="GameLayer1-26" num="26" class="block bl" style="left: 160px; bottom: 480px; width: 80px; height: 80px;"></div><div id="GameLayer1-27" num="27" class="block bl t1" style="left: 240px; bottom: 480px; width: 80px; height: 80px;"></div><div id="GameLayer1-28" num="28" class="block" style="left: 0px; bottom: 560px; width: 80px; height: 80px;"></div><div id="GameLayer1-29" num="29" class="block bl" style="left: 80px; bottom: 560px; width: 80px; height: 80px;"></div><div id="GameLayer1-30" num="30" class="block bl" style="left: 160px; bottom: 560px; width: 80px; height: 80px;"></div><div id="GameLayer1-31" num="31" class="block bl t3" style="left: 240px; bottom: 560px; width: 80px; height: 80px;"></div><div id="GameLayer1-32" num="32" class="block" style="left: 0px; bottom: 640px; width: 80px; height: 80px;"></div><div id="GameLayer1-33" num="33" class="block bl" style="left: 80px; bottom: 640px; width: 80px; height: 80px;"></div><div id="GameLayer1-34" num="34" class="block bl" style="left: 160px; bottom: 640px; width: 80px; height: 80px;"></div><div id="GameLayer1-35" num="35" class="block bl t5" style="left: 240px; bottom: 640px; width: 80px; height: 80px;"></div><div id="GameLayer1-36" num="36" class="block" style="left: 0px; bottom: 720px; width: 80px; height: 80px;"></div><div id="GameLayer1-37" num="37" class="block bl" style="left: 80px; bottom: 720px; width: 80px; height: 80px;"></div><div id="GameLayer1-38" num="38" class="block bl" style="left: 160px; bottom: 720px; width: 80px; height: 80px;"></div><div id="GameLayer1-39" num="39" class="block bl t1" style="left: 240px; bottom: 720px; width: 80px; height: 80px;"></div>'
+    });
+
+    var i = 0;
+    var t = setInterval(function(){ model.aaa = 80 * i++; },500)
+
+  </script>
+
+</body>
+</html>
