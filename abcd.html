@@ -110,7 +110,7 @@ display: none;
 
 	    var body, blockSize, GameLayer = [], GameLayerBG, touchArea = [], GameTimeLayer;
 	    var transform, transitionDuration;
-
+	    var start;
 	    function init(argument) {
 	        showWelcomeLayer();
 	        body = document.getElementById('gameBody') || document.body;
@@ -214,10 +214,12 @@ display: none;
 	        countBlockSize();
 	        refreshGameLayer(GameLayer[0]);
 	        refreshGameLayer(GameLayer[1], 1);
+	        start = new Date();
 	    }
 	    function gameStart() {
 	        _gameStart = true;
 	        _gameTime = setInterval(gameTime, 10);
+	        start = new Date();
 	    }
 	    function gameOver() {
 	        _gameOver = true;
@@ -229,7 +231,9 @@ display: none;
 	    }
 	    function gameTime() {
 	        _gameTimeNum--;
-	        if (_gameTimeNum <= 0) {
+	        // if (_gameTimeNum <= 0) {
+	       	var diff = new Date() - start;
+	        if( diff > 20000){
 	            GameTimeLayer.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;时间到！';
 	            gameOver();
 	            GameLayerBG.className += ' flash';
