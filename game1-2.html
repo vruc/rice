@@ -29,7 +29,7 @@
   .BBOX  ,.BOX,.APP-STAGE,.INSET-STAGE,.STAGE,.PAGE-STAGE,.PAGE,.PAGE-BOX,.INSET-PAGE,.FOOTER{box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
 
   #welcome { background-color:rgba(0,0,0,.8); text-align: center; font-weight: bold;overflow: hidden;}
-  .welcome-bg {position:absolute;top:0;left:0;right:0;bottom:0; background: url(imgs/doudou2.jpg) no-repeat; background-size:100% 100%; overflow: hidden;}
+  .welcome-bg {position:absolute;top:0;left:0;right:0;bottom:0; background: url(imgs/doudou.jpg) no-repeat; background-size:100% 100%; overflow: hidden;}
   #GameTimeLayer {top:1em; left: 0; width:100%; text-align: center; color:#f00; font-size: 4em; text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff;overflow: hidden;}
   #GameLayerBG {top:0;left:0;right:0;bottom:0;overflow:hidden;background: url(imgs/doudou.jpg) no-repeat; background-size:100% 100%;}
   .GameLayer {position:absolute;bottom:0;left:0;}
@@ -117,7 +117,7 @@
           "imgUrl": "http://42.159.197.17/qr/imgs/soya2.png", // img url
           "timeLineLink": "http://42.159.197.17/qr/game1.html", // url
           "tTitle": "挑你的逗",
-          "tContent": "你是我的小呀小黄豆，怎么点你我都不嫌多！"
+          "tContent": "挑你的逗,怎么爱你都不嫌多！"
       };
 
       if (isDesktop)
@@ -161,10 +161,15 @@
       }else{
         var btn = document.getElementById('ready-btn');
         btn.className = 'btn';
-        btn.innerHTML = ' 开始挑逗！'
+        btn.innerHTML = ' 预备，上！'
         btn.style.backgroundColor = '#F00';
         btn.onclick = function(){
           closeWelcomeLayer();
+
+          setTimeout(function(){
+            setInterval(gameTime, 100);
+          },3000)
+
         }           
       }
           }, 500);
@@ -236,7 +241,7 @@
       }
       function gameStart() {
           _gameStart = true;
-          _gameTime = setInterval(gameTime, 100);
+          _gameTime = setInterval(gameTime, 10);
       }
       function gameOver() {
           _gameOver = true;
@@ -247,21 +252,20 @@
           }, 1500);
       }
       function gameTime() {
-          _gameTimeNum--;
+          _gameTimeNum -= 1;
           if (_gameTimeNum <= 0) {
               GameTimeLayer.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;时间到！';
               gameOver();
               GameLayerBG.className += ' flash';
               // createjs.Sound.play("end");
-              end.play();
+              // end.play();
           } else {
               GameTimeLayer.innerHTML = creatTimeText(_gameTimeNum);
           }
       }
       function creatTimeText(n) {
-          var text = (1000000 + n + '0').substr(-4, 4);
+          var text = (10000 + n + '').substr(-4, 4);
           text = '&nbsp;&nbsp;' + text.substr(0, 2) + "'" + text.substr(2) + "''"
-          console.log(n)
           return text;
       }
       var test = false;
@@ -282,9 +286,9 @@
                   r.notEmpty = true;
                   i = (Math.floor(j / 4) + 1) * 4 + Math.floor(Math.random() * 1000) % 4;
               } else {
-                  if( j > 3 ) { test = true; }
+                  if( j>3 ) { test = true; }
                   if( test ){
-                    if(Math.random() > 0.5)
+                    if(Math.random()>0.5)
                       r.className += ' btt1';
                     else{
                       r.className += ' btt2';
@@ -336,8 +340,8 @@
                   gameStart();
               }
               // createjs.Sound.play("tap");
-              tap.reset();
-              tap.play();
+              // tap.reset();
+              // tap.play();
               tar = document.getElementById(p.id);
               tar.className = tar.className.replace(_ttreg, ' tt$1').replace(/btt[1,2]/g, "");
               _gameBBListIndex++;
@@ -345,7 +349,7 @@
               gameLayerMoveNextRow();
           } else if (_gameStart && !tar.notEmpty) {
               // createjs.Sound.play("err");
-              err.play();
+              // err.play();
               gameOver();
               tar.className = tar.className.replace(/(btt[1,2])/g, "$1f") + ' bad';
           }
@@ -462,7 +466,7 @@
                   "desc": window.shareData.tContent,
                   "title": window.shareData.tTitle
               }, function (res) {
-                  // document.location.href = mebtnopenurl;
+                  document.location.href = mebtnopenurl;
               })
           });
 
@@ -475,7 +479,7 @@
                   "desc": window.shareData.tContent,
                   "title": window.shareData.tTitle
               }, function (res) {
-                  // document.location.href = mebtnopenurl;
+                  document.location.href = mebtnopenurl;
               });
           });
       }, false);
@@ -493,8 +497,12 @@
         <div class="btn BOX-S" onclick="share()">分享到朋友圈</div>&nbsp;
       </div>
       <br/>
+      <!-- <div id="GameScoreLayer-share" class="BOX">
+        <div id="mebtn" class="btn BOX-S" onclick="window.open(mebtnopenurl)">&nbsp;更多游戏！</div>
+      </div> -->
       <br>
       <div id="GameScoreLayer-share" class="BOX">
+      <!-- <div id="mebtn" class="btn BOX-S" ><a href="http://ddqianphp.aliapp.com/game/gzh/readme.html" style="color:#fff;text-decoration:none;">关注多多智富！</a></div> -->
       </div>
     </div>
   </div>
@@ -503,10 +511,18 @@
     <div class="welcome-bg FILL"></div>
     <div class="FILL BOX-M" style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:5;">
       <div style="margin:0 8% 0 9%;">
-        <div style="font-size:2.6em; color:#000;">今天，你挑逗了吗？</div><br/>
-        <div style="font-size:2.2em; color:#000; line-height:1.5em;">来吧，测试你眼力的时候到了！！<br/>从最下面的小黄豆开始<br/>20秒内看你能挑出多少个小黄豆！<br/></div><br/><br/>
+        <div style="font-size:2.6em; color:#000;">你爱挑逗吗？</div><br/>
+        <div style="font-size:2.2em; color:#000; line-height:1.5em;">从最下面的小黄豆开始，<br/>20秒内看你能挑出多少个小黄豆！<br/></div><br/><br/>
         <div id="ready-btn" class="btn loading" style="display:inline-block; margin:0 auto; width:8em; height:1.7em; line-height:1.7em; font-size:2.2em; color:#fff;"></div>
-      <br/><br/>    
+      <br/><br/>
+      
+      <!-- <div style="font-size:1.2em; color:#000; line-height:1.5em;">
+        多多智富正为您打造一个收获
+        <br/>智慧、快乐与财富的平台。
+        <br/>点击下方按钮关注公众号<br/>
+      </div> -->
+      <!-- <div style="display:inline-block; margin:0 auto; width:8em; height:1em; line-height:1.7em; font-size:1.7em; color:#fff;" ><a href="http://ddqianphp.aliapp.com/game/gzh/readme.html">点击关注</a></div> -->
+    
       </div>
     </div>
   </div>
