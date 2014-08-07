@@ -108,14 +108,19 @@
         };
       };
 
+      setTimeout(function(){
+        var imgs = ['imgs/soya2s.png', 'imgs/bean2f.png', 'imgs/rice2f.png'];
+        for(var i =0, l=imgs.length;i<l;i++){ var img =  new Image(); img.src = imgs[i]; }
+      },1000);
+
     //var audio = new AudioManager("/Media/VLWV2.ogg");
     var end = new AudioManager("sounds/end.mp3");
     var err = new AudioManager("sounds/err.mp3");
     var tap = new AudioManager("sounds/tap.mp3");
 
       window.shareData = {
-          "imgUrl": "http://42.159.197.17/qr/imgs/soya2.png", // img url
-          "timeLineLink": "http://42.159.197.17/qr/game1.html", // url
+          "imgUrl": "http://www.qinrun.com/game/rice/imgs/soya2.png", // img url
+          "timeLineLink": "http://www.qinrun.com/game/rice/game1.html", // url
           "tTitle": "挑你的逗",
           "tContent": "你是我的小呀小黄豆，怎么点你我都不嫌多！"
       };
@@ -148,6 +153,12 @@
               document.getElementById('landscape-text').innerHTML = '点我开始挑逗';
               document.getElementById('landscape').onclick = winOpen;
           }
+
+          var t = ('WeixinJSBridge' in window);
+
+          if(!t)
+            window.location.href = "http://www.qinrun.com/";
+
           gameInit();
           window.addEventListener('resize', refreshSize, false);
 
@@ -216,9 +227,6 @@
       }
       var _gameBBList = [], _gameBBListIndex = 0, _gameOver = false, _gameStart = false, _gameTime, _gameTimeNum, _gameScore;
       function gameInit() {
-          // createjs.Sound.registerSound({ src: "img/err.mp3", id: "err" });
-          // createjs.Sound.registerSound({ src: "img/end.mp3", id: "end" });
-          // createjs.Sound.registerSound({ src: "img/tap.mp3", id: "tap" });
           gameRestart();
       }
       function gameRestart() {
@@ -252,7 +260,6 @@
               GameTimeLayer.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;时间到！';
               gameOver();
               GameLayerBG.className += ' flash';
-              // createjs.Sound.play("end");
               end.play();
           } else {
               GameTimeLayer.innerHTML = creatTimeText(_gameTimeNum);
@@ -335,7 +342,6 @@
               if (!_gameStart) {
                   gameStart();
               }
-              // createjs.Sound.play("tap");
               tap.reset();
               tap.play();
               tar = document.getElementById(p.id);
@@ -344,7 +350,6 @@
               _gameScore++;
               gameLayerMoveNextRow();
           } else if (_gameStart && !tar.notEmpty) {
-              // createjs.Sound.play("err");
               err.play();
               gameOver();
               tar.className = tar.className.replace(/(btt[1,2])/g, "$1f") + ' bad';
@@ -369,6 +374,7 @@
 
           return html;
       }
+
       function closeWelcomeLayer() {
           var l = document.getElementById('welcome');
           l.style.display = 'none';
@@ -377,8 +383,7 @@
           var l = document.getElementById('welcome');
           l.style.display = 'block';
       }
-      function showGameScoreLayer() {
-
+      function showGameScoreLayer() { 
           var l = document.getElementById('GameScoreLayer');
           var c = document.getElementById(_gameBBList[_gameBBListIndex - 1].id).className.match(_ttreg)[1];
           l.className = l.className.replace(/bgc\d/, 'bgc' + c);
@@ -516,7 +521,7 @@
     <div id="landscape-text" style="color:#fff;font-size:3em;">请竖屏玩耍</div>
   </div>
 
-  <div id="share-wx"><p style="text-align: right; padding-left: 10px;"><img src="share.png" id="share-wx-img" style="max-width: 280px; padding-right: 25px;"></p></div>
+  <div id="share-wx"><p style="text-align: right; padding-left: 10px;"><img src="imgs/share.png" id="share-wx-img" style="max-width: 280px; padding-right: 25px;"></p></div>
 <script type="text/javascript">
     if (isDesktop)
         document.write('</div>');
